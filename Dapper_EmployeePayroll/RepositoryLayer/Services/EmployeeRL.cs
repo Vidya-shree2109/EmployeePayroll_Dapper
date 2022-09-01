@@ -4,7 +4,8 @@ using System.Text;
 
 namespace RepositoryLayer.Services
 {
-    internal class EmployeeRL
+    public class EmployeeRL
     {
+
     }
 }

@@ -4,7 +4,8 @@ using System.Text;
 
 namespace BusinessLayer.Services
 {
-    internal class EmployeeBL
+    public class EmployeeBL
     {
+
     }
 }

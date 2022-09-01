@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RepositoryLayer.Interfaces
+namespace CommonLayer.Model
 {
-    public interface IEmployeeRL
+    internal class EmployeeModel
     {
-
     }
 }

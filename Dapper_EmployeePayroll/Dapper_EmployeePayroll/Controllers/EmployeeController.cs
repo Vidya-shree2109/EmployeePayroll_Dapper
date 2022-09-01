@@ -7,5 +7,9 @@ namespace Dapper_EmployeePayroll.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
+        public IActionResult Index()
+        {
+            return View();
+        }
     }
 }
