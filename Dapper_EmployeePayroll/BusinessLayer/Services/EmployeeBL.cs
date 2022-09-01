@@ -50,5 +50,16 @@ namespace BusinessLayer.Services
                 throw ex;
             }
         }
+        public int DeleteEmployee(int empId)
+        {
+            try
+            {
+                return employeeRL.DeleteEmployee(empId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

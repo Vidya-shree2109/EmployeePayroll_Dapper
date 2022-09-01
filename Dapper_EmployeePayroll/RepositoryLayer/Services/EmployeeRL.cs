@@ -82,5 +82,27 @@ namespace RepositoryLayer.Services
                 throw ex;
             }
         }
+        public int DeleteEmployee(int empId)
+        {
+            SqlConnection sqlConnection = new SqlConnection(connetionString);
+            try
+            {
+                using (sqlConnection)
+                {
+                    sqlConnection.Open();
+                    var sql = $"delete from table_EmployeeDapper Where Id={empId}";
+                    var result = sqlConnection.Execute(sql);
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
     }
 }

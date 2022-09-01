@@ -67,5 +67,22 @@ namespace Dapper_EmployeePayroll.Controllers
                 throw ex;
             }
         }
+        [HttpDelete("DeleteEmployee")]
+        public IActionResult DeleteEmployee(int EmpId)
+        {
+            try
+            {
+                var result = employeeBL.DeleteEmployee(EmpId);
+                if (result == 0)
+                {
+                    return this.BadRequest(new { success = false, Message = "Something went wrong while Deleting Employee Record !!" });
+                }
+                return this.Ok(new { success = true, Message = $"Employee Record Deleted Sucessfully... EmpId={EmpId}" });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
