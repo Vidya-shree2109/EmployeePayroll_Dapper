@@ -1,5 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BusinessLayer.Interfaces;
+using BusinessLayer.Services;
+using CommonLayer.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace Dapper_EmployeePayroll.Controllers
 {
@@ -7,9 +12,80 @@ namespace Dapper_EmployeePayroll.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        public IActionResult Index()
+        IEmployeeBL employeeBL;
+
+        public EmployeeController(IEmployeeBL empBL)
         {
-            return View();
+            employeeBL = empBL;
+        }
+
+        [HttpPost("AddEmployee")]
+        public IActionResult AddEmployee(EmployeePostModel empPostModel)
+        {
+            try
+            {
+                var result = employeeBL.AddEmployee(empPostModel);
+                if (result == 0)
+                {
+                    return this.BadRequest(new { sucess = false, Message = "Something went wrong while adding Employee!!" });
+                }
+                return this.Ok(new { sucess = true, Message = "Employee Added Sucessfully..." });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        [HttpGet("GetAllEmployee")]
+        public IActionResult GetAllEmployee()
+        {
+            try
+            {
+                List<EmployeeGetModel> empList = new List<EmployeeGetModel>();
+                var EmpList = employeeBL.GetAllEmp();
+                return Ok(new { sucess = true, Message = "Employee's data fetched Successfully...", data = EmpList });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpPut("UpdateEmployee")]
+        public IActionResult UpdateEmployee(int EmpId, EmployeePostModel empPostModel)
+        {
+            try
+            {
+                var result = employeeBL.UpdateEmployee(EmpId, empPostModel);
+                if (result == 0)
+                {
+                    return this.BadRequest(new { sucess = false, Message = "Something went wrong while Updating Employee Details!!" });
+                }
+                return this.Ok(new { sucess = true, Message = "Employee details Updated Sucessfully..." });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [HttpDelete("DeleteEmployee")]
+        public IActionResult DeleteEmployee(int EmpId)
+        {
+            try
+            {
+                var result = employeeBL.DeleteEmployee(EmpId);
+                if (result == 0)
+                {
+                    return this.BadRequest(new { sucess = false, Message = "Something went wrong while Deleting Employee Record !!" });
+                }
+                return this.Ok(new { sucess = true, Message = $"Employee Record Deleted Sucessfully... EmpId={EmpId}" });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
