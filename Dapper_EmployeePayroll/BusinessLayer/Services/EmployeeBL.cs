@@ -27,7 +27,6 @@ namespace BusinessLayer.Services
                 throw ex;
             }
         }
-
         public List<EmployeeGetModel> GetAllEmp()
         {
             try
@@ -40,27 +39,6 @@ namespace BusinessLayer.Services
             }
 
         }
-        public int UpdateEmployee(int EmpId, EmployeePostModel empPostModel)
-        {
-            try
-            {
-                return employeeRL.UpdateEmployee(EmpId, empPostModel);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public int DeleteEmployee(int empId)
-        {
-            try
-            {
-                return employeeRL.DeleteEmployee(empId);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+
     }
 }

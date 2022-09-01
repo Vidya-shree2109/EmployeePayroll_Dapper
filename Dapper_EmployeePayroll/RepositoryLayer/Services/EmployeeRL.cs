@@ -40,7 +40,6 @@ namespace RepositoryLayer.Services
                 sqlConnection.Close();
             }
         }
-
         public List<EmployeeGetModel> GetAllEmp()
         {
             List<EmployeeGetModel> listOfUsers = new List<EmployeeGetModel>();
@@ -55,46 +54,6 @@ namespace RepositoryLayer.Services
                     return result.ToList();
                 }
 
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                sqlConnection.Close();
-            }
-        }
-        public int UpdateEmployee(int empId, EmployeePostModel empPostModel)
-        {
-            SqlConnection sqlConnection = new SqlConnection(connetionString);
-            try
-            {
-                using (sqlConnection)
-                {
-                    sqlConnection.Open();
-                    var sql = ("Update table_EmployeeDapper SET FirstName=@FirstName,LastName=@LastName,Address=@Address,Mobile=@Mobile where Id=" + empId).ToString();
-                    var result = sqlConnection.Execute(sql, empPostModel);
-                    return result;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public int DeleteEmployee(int empId)
-        {
-            SqlConnection sqlConnection = new SqlConnection(connetionString);
-            try
-            {
-                using (sqlConnection)
-                {
-                    sqlConnection.Open();
-                    var sql = $"delete from table_EmployeeDapper Where Id={empId}";
-                    var result = sqlConnection.Execute(sql);
-                    return result;
-                }
             }
             catch (Exception ex)
             {

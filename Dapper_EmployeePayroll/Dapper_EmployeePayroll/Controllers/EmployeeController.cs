@@ -36,8 +36,6 @@ namespace Dapper_EmployeePayroll.Controllers
                 throw ex;
             }
         }
-
-
         [HttpGet("GetAllEmployee")]
         public IActionResult GetAllEmployee()
         {
@@ -46,41 +44,6 @@ namespace Dapper_EmployeePayroll.Controllers
                 List<EmployeeGetModel> empList = new List<EmployeeGetModel>();
                 var EmpList = employeeBL.GetAllEmp();
                 return Ok(new { sucess = true, Message = "Employee's data fetched Successfully...", data = EmpList });
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        [HttpPut("UpdateEmployee")]
-        public IActionResult UpdateEmployee(int EmpId, EmployeePostModel empPostModel)
-        {
-            try
-            {
-                var result = employeeBL.UpdateEmployee(EmpId, empPostModel);
-                if (result == 0)
-                {
-                    return this.BadRequest(new { sucess = false, Message = "Something went wrong while Updating Employee Details!!" });
-                }
-                return this.Ok(new { sucess = true, Message = "Employee details Updated Sucessfully..." });
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        [HttpDelete("DeleteEmployee")]
-        public IActionResult DeleteEmployee(int EmpId)
-        {
-            try
-            {
-                var result = employeeBL.DeleteEmployee(EmpId);
-                if (result == 0)
-                {
-                    return this.BadRequest(new { sucess = false, Message = "Something went wrong while Deleting Employee Record !!" });
-                }
-                return this.Ok(new { sucess = true, Message = $"Employee Record Deleted Sucessfully... EmpId={EmpId}" });
             }
             catch (Exception ex)
             {
