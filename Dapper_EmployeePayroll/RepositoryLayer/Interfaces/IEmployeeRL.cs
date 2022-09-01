@@ -9,6 +9,7 @@ namespace RepositoryLayer.Interfaces
     {
         public int AddEmployee(EmployeePostModel empPostModel);
         public List<EmployeeGetModel> GetAllEmp();
+        public int UpdateEmployee(int EmpId, EmployeePostModel empPostModel);
 
     }
 }
